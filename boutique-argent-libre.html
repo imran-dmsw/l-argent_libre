@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Argent Libre — Le guide pour reprendre le contrôle</title>
+<meta name="description" content="187 pages. 24 méthodes prouvées. Le seul guide dont vous avez besoin pour arrêter de subir votre argent.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f9f5ef;
+  --cream2: #f2ebe0;
+  --cream3: #e8ddd0;
+  --ink: #1a1208;
+  --ink2: #2d2416;
+  --brown: #6b4c2a;
+  --brown-light: #a07850;
+  --gold: #c9952a;
+  --gold-light: #e8c068;
+  --green: #2d5a3d;
+  --green-light: #4a8a5f;
+  --red: #c0392b;
+  --muted: #8a7a68;
+  --border: rgba(26,18,8,0.1);
+  --border2: rgba(26,18,8,0.18);
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Lato', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* PAPER TEXTURE */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.018;
+  pointer-events: none;
+  z-index: 9000;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(249,245,239,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 3rem;
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--ink); text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.nav-logo span { color: var(--gold); }
+.nav-cta {
+  background: var(--ink);
+  color: var(--cream); border: none; cursor: pointer;
+  padding: 0.5rem 1.4rem;
+  font-family: var(--sans); font-size: 0.8rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--brown); }
+
+/* URGENCY STRIP */
+.urgency {
+  background: var(--green);
+  color: var(--cream);
+  text-align: center;
+  padding: 0.55rem 2rem;
+  margin-top: 56px;
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.urgency span { color: var(--gold-light); }
+
+/* ═══════════ HERO ═══════════ */
+.hero {
+  background: var(--cream2);
+  border-bottom: 1px solid var(--border2);
+  padding: 5.5rem 4rem 0;
+  overflow: hidden;
+  position: relative;
+}
+.hero::before {
+  content: '£';
+  font-family: var(--serif);
+  font-size: 32rem; font-weight: 900;
+  color: rgba(201,149,42,0.05);
+  position: absolute; right: -4rem; top: -6rem;
+  line-height: 1; pointer-events: none;
+  user-select: none;
+}
+.hero-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 420px; gap: 5rem;
+  align-items: end;
+}
+.hero-left { padding-bottom: 5rem; }
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.8rem;
+  opacity: 0; animation: fadeUp 0.7s 0.1s forwards;
+}
+.hero-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5.5vw, 5.5rem);
+  font-weight: 900; line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.2rem;
+  opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+}
+.hero-title em { font-style: italic; color: var(--gold); }
+
+.hero-subtitle {
+  font-family: var(--serif);
+  font-size: 1.25rem; font-weight: 400; font-style: italic;
+  color: var(--muted); line-height: 1.6;
+  max-width: 520px; margin-bottom: 2.5rem;
+  opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+}
+.hero-subtitle strong { font-style: normal; color: var(--ink); font-weight: 700; }
+
+.hero-stats {
+  display: flex; gap: 2.5rem; margin-bottom: 3rem;
+  opacity: 0; animation: fadeUp 0.7s 0.45s forwards;
+}
+.hero-stat { }
+.hero-stat-num {
+  font-family: var(--serif);
+  font-size: 2rem; font-weight: 900; line-height: 1;
+  color: var(--ink);
+}
+.hero-stat-label {
+  font-size: 0.72rem; color: var(--muted);
+  letter-spacing: 0.04em; margin-top: 0.1rem;
+}
+.hero-stat-sep { width: 1px; background: var(--border2); align-self: stretch; }
+
+.hero-actions {
+  display: flex; align-items: center; gap: 1.5rem;
+  flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.7s 0.55s forwards;
+}
+.btn-main {
+  background: var(--ink);
+  color: var(--cream); border: none; cursor: pointer;
+  padding: 1rem 2.5rem;
+  font-family: var(--sans); font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: all 0.25s;
+  position: relative; overflow: hidden;
+}
+.btn-main::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.08);
+  transform: translateX(-100%) skewX(-15deg);
+  transition: transform 0.4s;
+}
+.btn-main:hover::after { transform: translateX(120%) skewX(-15deg); }
+.btn-main:hover { background: var(--brown); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,18,8,0.2); }
+
+.btn-main.gold {
+  background: var(--gold);
+  color: var(--ink);
+}
+.btn-main.gold:hover { background: #b8841f; }
+
+.hero-reassure {
+  font-size: 0.75rem; color: var(--muted);
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.hero-reassure::before { content: '🔒'; font-size: 0.85rem; }
+
+/* BOOK VISUAL */
+.book-visual {
+  position: relative;
+  padding-bottom: 0;
+  opacity: 0; animation: fadeUp 0.9s 0.3s forwards;
+  align-self: end;
+}
+.book-3d {
+  position: relative;
+  width: 300px;
+  transform-style: preserve-3d;
+  margin: 0 auto;
+  animation: bookFloat 6s ease-in-out infinite;
+}
+.book-cover {
+  width: 280px;
+  background: linear-gradient(145deg, #1a3d2a 0%, #2d5a3d 40%, #1a3d2a 100%);
+  border-radius: 4px 10px 10px 4px;
+  padding: 2.5rem 2rem;
+  position: relative;
+  box-shadow:
+    -8px 0 0 #0d2218,
+    -10px 4px 20px rgba(0,0,0,0.4),
+    0 20px 60px rgba(0,0,0,0.3),
+    inset 4px 0 8px rgba(255,255,255,0.04);
+  min-height: 380px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+}
+/* Spine effect */
+.book-cover::before {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0;
+  width: 10px;
+  background: linear-gradient(90deg, #0d2218, #1a3d2a);
+  border-radius: 4px 0 0 4px;
+}
+/* Gold foil top bar */
+.book-top-bar {
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  margin-bottom: 1.5rem;
+}
+.book-tag-top {
+  font-family: var(--sans);
+  font-size: 0.55rem; font-weight: 700;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 0.8rem;
+}
+.book-title-cover {
+  font-family: var(--serif);
+  font-size: 1.9rem; font-weight: 900;
+  color: #f9f5ef; line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+.book-title-cover em {
+  font-style: italic;
+  color: var(--gold-light);
+  display: block;
+  font-size: 1.1rem; font-weight: 400;
+  margin-top: 0.3rem;
+}
+.book-divider {
+  width: 40px; height: 1px;
+  background: var(--gold);
+  margin: 1.2rem 0;
+}
+.book-desc-cover {
+  font-size: 0.7rem; line-height: 1.7;
+  color: rgba(249,245,239,0.55);
+  letter-spacing: 0.02em;
+  flex: 1;
+}
+.book-bottom-bar {
+  margin-top: 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.book-pages {
+  font-size: 0.6rem; color: rgba(249,245,239,0.35);
+  letter-spacing: 0.12em; text-transform: uppercase;
+}
+.book-price-cover {
+  font-family: var(--serif);
+  font-size: 1.4rem; font-weight: 900;
+  color: var(--gold-light);
+}
+/* Shadow under book */
+.book-shadow {
+  width: 260px; height: 30px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.25) 0%, transparent 70%);
+  margin: 0 auto;
+  margin-top: -8px;
+}
+/* Badge on book */
+.book-badge {
+  position: absolute; top: -16px; right: -16px;
+  width: 76px; height: 76px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(201,149,42,0.4);
+  animation: badgePop 4s ease-in-out infinite;
+}
+.badge-num { font-family: var(--serif); font-size: 1.3rem; font-weight: 900; color: var(--ink); line-height: 1; }
+.badge-sub { font-size: 0.45rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(26,18,8,0.7); }
+
+/* ═══════════ SOCIAL PROOF BAR ═══════════ */
+.proof-bar {
+  background: var(--ink);
+  padding: 2rem 4rem;
+  display: flex; justify-content: center;
+  gap: 4rem; flex-wrap: wrap;
+}
+.proof-item {
+  text-align: center; color: var(--cream);
+}
+.proof-num {
+  font-family: var(--serif);
+  font-size: 1.8rem; font-weight: 900;
+  color: var(--gold-light); line-height: 1;
+}
+.proof-label {
+  font-size: 0.72rem; color: rgba(249,245,239,0.45);
+  letter-spacing: 0.08em; margin-top: 0.2rem;
+  text-transform: uppercase;
+}
+
+/* ═══════════ HOOK SECTION ═══════════ */
+.hook-section {
+  padding: 6rem 4rem;
+  max-width: 1080px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+  align-items: center;
+}
+.hook-eyebrow {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.hook-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 900; line-height: 1.1;
+  letter-spacing: -0.02em; margin-bottom: 1.5rem;
+}
+.hook-title em { font-style: italic; color: var(--gold); }
+.hook-body {
+  font-size: 1rem; line-height: 1.85;
+  color: var(--muted); margin-bottom: 2rem;
+}
+.hook-body strong { color: var(--ink); font-weight: 700; }
+.pain-list { list-style: none; }
+.pain-item {
+  display: flex; gap: 1rem; padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem; line-height: 1.5; color: var(--ink2);
+  align-items: flex-start;
+}
+.pain-item:first-child { border-top: 1px solid var(--border); }
+.pain-check {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 0.65rem; font-weight: 700;
+  flex-shrink: 0; margin-top: 2px;
+}
+.pain-check.bad {
+  background: rgba(192,57,43,0.12);
+  color: var(--red);
+}
+
+/* ═══════════ WHAT'S INSIDE ═══════════ */
+.inside-section {
+  background: var(--cream2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 6rem 4rem;
+}
+.inside-inner { max-width: 1080px; margin: 0 auto; }
+.section-head { text-align: center; margin-bottom: 4rem; }
+.section-eyebrow {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.8rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 900; line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.section-title em { font-style: italic; }
+.chapters-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.chapter-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  padding: 2rem 1.8rem;
+  position: relative;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.chapter-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(26,18,8,0.1); }
+.chapter-num {
+  font-family: var(--serif);
+  font-size: 3rem; font-weight: 900;
+  color: rgba(201,149,42,0.15);
+  position: absolute; top: 1rem; right: 1.5rem;
+  line-height: 1;
+}
+.chapter-tag {
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.6rem;
+}
+.chapter-name {
+  font-family: var(--serif);
+  font-size: 1.15rem; font-weight: 700;
+  line-height: 1.3; margin-bottom: 0.8rem;
+  letter-spacing: -0.01em;
+}
+.chapter-desc {
+  font-size: 0.82rem; line-height: 1.75;
+  color: var(--muted);
+}
+.chapter-pages {
+  margin-top: 1.2rem;
+  font-size: 0.65rem; color: var(--muted);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.chapter-pages::before { content: ''; width: 16px; height: 1px; background: var(--gold); }
+
+/* ═══════════ OFFER SECTION ═══════════ */
+.offer-section {
+  padding: 6rem 4rem;
+  max-width: 1080px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+  align-items: start;
+}
+.offer-left { }
+.offer-book-mini {
+  background: linear-gradient(145deg, #1a3d2a, #2d5a3d);
+  border-radius: 4px 8px 8px 4px;
+  padding: 2rem 1.8rem;
+  position: relative;
+  box-shadow: -6px 0 0 #0d2218, -8px 4px 16px rgba(0,0,0,0.3), 0 16px 40px rgba(0,0,0,0.2);
+  margin-bottom: 2rem;
+  animation: bookFloat 7s ease-in-out infinite;
+}
+.offer-book-mini::before {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0;
+  width: 8px;
+  background: linear-gradient(90deg, #0d2218, #1a3d2a);
+  border-radius: 4px 0 0 4px;
+}
+.ob-tag { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.2em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 0.5rem; }
+.ob-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 900; color: #f9f5ef; margin-bottom: 0.3rem; }
+.ob-sub { font-family: var(--serif); font-style: italic; font-size: 0.85rem; color: var(--gold-light); }
+.ob-line { width: 30px; height: 1px; background: var(--gold); margin: 1rem 0; }
+.ob-includes { }
+.ob-inc-item {
+  display: flex; gap: 0.6rem; align-items: center;
+  font-size: 0.72rem; color: rgba(249,245,239,0.6);
+  margin-bottom: 0.4rem;
+}
+.ob-inc-item::before { content: '✦'; color: var(--gold); font-size: 0.6rem; flex-shrink: 0; }
+
+.bonuses { margin-top: 1.5rem; }
+.bonus-item {
+  display: flex; gap: 1rem; padding: 1rem;
+  background: var(--cream2); border: 1px solid var(--border);
+  margin-bottom: 0.6rem; align-items: flex-start;
+}
+.bonus-icon { font-size: 1.5rem; flex-shrink: 0; }
+.bonus-label {
+  font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 0.2rem;
+}
+.bonus-name { font-size: 0.9rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
+.bonus-val { font-size: 0.72rem; color: var(--muted); }
+.bonus-val span { color: var(--green); font-weight: 700; }
+
+/* OFFER RIGHT — pricing */
+.offer-right { }
+.offer-eyebrow {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem;
+}
+.offer-box {
+  border: 2px solid var(--ink);
+  padding: 2.5rem;
+  position: relative;
+  background: var(--cream);
+}
+.offer-box::before {
+  content: 'OFFRE LANCEMENT';
+  position: absolute; top: -0.7rem; left: 2rem;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 0.2rem 0.8rem;
+}
+.offer-title {
+  font-family: var(--serif);
+  font-size: 1.5rem; font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+.offer-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 2rem; }
+.offer-includes { margin-bottom: 2rem; }
+.offer-inc {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.85rem; padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink2);
+}
+.offer-inc:last-child { border-bottom: none; }
+.inc-check { color: var(--green); font-weight: 700; font-size: 0.9rem; }
+.inc-val {
+  margin-left: auto;
+  font-size: 0.75rem; color: var(--muted);
+  text-decoration: line-through;
+}
+.price-section { margin-bottom: 1.8rem; }
+.price-value {
+  font-family: var(--serif);
+  font-size: 4rem; font-weight: 900;
+  line-height: 1; letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.price-meta {
+  display: flex; gap: 1rem; align-items: center; margin-top: 0.3rem;
+}
+.price-old { font-size: 1rem; color: var(--muted); text-decoration: line-through; }
+.price-save {
+  background: rgba(45,90,61,0.1); color: var(--green);
+  font-size: 0.72rem; font-weight: 700;
+  padding: 0.2rem 0.6rem; letter-spacing: 0.04em;
+}
+.price-note { font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; }
+.btn-buy-offer {
+  width: 100%; padding: 1.1rem;
+  background: var(--gold);
+  color: var(--ink); border: none; cursor: pointer;
+  font-family: var(--sans); font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  transition: all 0.2s;
+  position: relative; overflow: hidden;
+}
+.btn-buy-offer::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.15);
+  transform: translateX(-100%) skewX(-15deg);
+  transition: transform 0.4s;
+}
+.btn-buy-offer:hover::after { transform: translateX(120%) skewX(-15deg); }
+.btn-buy-offer:hover { background: #b8841f; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(201,149,42,0.35); }
+.guarantee-row {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.75rem; color: var(--muted);
+  justify-content: center; text-align: center;
+}
+.guarantee-row::before { content: '🔒'; }
+.countdown-wrap { margin-top: 1.5rem; }
+.countdown-label {
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--red); text-align: center; margin-bottom: 0.6rem;
+}
+.countdown-row {
+  display: flex; justify-content: center; gap: 0.5rem;
+}
+.cd-block {
+  text-align: center;
+  background: var(--ink2); color: var(--cream);
+  padding: 0.5rem 0.8rem; min-width: 52px;
+}
+.cd-num {
+  font-family: var(--serif); font-size: 1.4rem; font-weight: 900;
+  line-height: 1; display: block;
+}
+.cd-label { font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.5; }
+.cd-sep { font-family: var(--serif); font-size: 1.4rem; color: var(--muted); align-self: center; padding-bottom: 0.4rem; }
+
+/* ═══════════ TESTIMONIALS ═══════════ */
+.testi-section {
+  background: var(--cream2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 6rem 4rem;
+}
+.testi-inner { max-width: 1080px; margin: 0 auto; }
+.testi-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-top: 4rem;
+}
+.testi-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  position: relative;
+  transition: transform 0.25s;
+}
+.testi-card:hover { transform: translateY(-3px); }
+.testi-quote-mark {
+  font-family: var(--serif); font-size: 5rem;
+  color: rgba(201,149,42,0.12); line-height: 0.8;
+  margin-bottom: 0.5rem;
+}
+.testi-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 0.8rem; }
+.testi-text {
+  font-family: var(--serif);
+  font-size: 0.95rem; line-height: 1.8;
+  font-style: italic; color: var(--ink2);
+  margin-bottom: 1.5rem;
+}
+.testi-author-row { display: flex; align-items: center; gap: 0.8rem; }
+.testi-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.85rem;
+  color: var(--cream); flex-shrink: 0;
+}
+.av-g { background: var(--green); }
+.av-b { background: var(--brown); }
+.av-d { background: var(--ink2); }
+.testi-name { font-size: 0.85rem; font-weight: 700; letter-spacing: -0.01em; }
+.testi-role { font-size: 0.72rem; color: var(--muted); }
+.testi-result {
+  margin-top: 1rem; padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--green); letter-spacing: 0.04em;
+}
+
+/* ═══════════ AUTHOR ═══════════ */
+.author-section {
+  padding: 6rem 4rem;
+  max-width: 1080px; margin: 0 auto;
+  display: grid; grid-template-columns: 280px 1fr; gap: 5rem;
+  align-items: center;
+}
+.author-portrait {
+  width: 240px; height: 300px;
+  background: linear-gradient(160deg, var(--cream3), var(--cream2));
+  border: 1px solid var(--border2);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.author-portrait::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(201,149,42,0.08) 0%, transparent 60%);
+}
+.author-initials {
+  font-family: var(--serif); font-size: 4rem; font-weight: 900;
+  color: rgba(26,18,8,0.15); line-height: 1;
+}
+.author-name-plate {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--ink); padding: 0.8rem 1rem;
+  text-align: center;
+}
+.author-name-plate .name { font-family: var(--serif); font-size: 0.95rem; font-weight: 700; color: var(--cream); }
+.author-name-plate .title { font-size: 0.62rem; color: var(--gold-light); letter-spacing: 0.1em; text-transform: uppercase; }
+.author-eyebrow {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.8rem;
+}
+.author-name {
+  font-family: var(--serif); font-size: 2rem; font-weight: 900;
+  letter-spacing: -0.02em; margin-bottom: 1.2rem;
+}
+.author-bio {
+  font-size: 0.95rem; line-height: 1.85;
+  color: var(--muted); margin-bottom: 1.5rem;
+}
+.author-bio strong { color: var(--ink); font-weight: 700; }
+.author-creds { display: flex; gap: 1rem; flex-wrap: wrap; }
+.cred {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--brown);
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--brown-light);
+  background: rgba(107,76,42,0.06);
+}
+
+/* ═══════════ GUARANTEE ═══════════ */
+.guarantee-section {
+  background: var(--green);
+  padding: 5rem 4rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.guarantee-section::before {
+  content: '30';
+  font-family: var(--serif); font-size: 22rem; font-weight: 900;
+  color: rgba(255,255,255,0.04);
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1; pointer-events: none;
+}
+.guarantee-badge {
+  width: 100px; height: 100px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  margin: 0 auto 2rem;
+  position: relative;
+}
+.guarantee-badge::before {
+  content: '';
+  position: absolute; inset: 6px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+}
+.gb-num { font-family: var(--serif); font-size: 2rem; font-weight: 900; color: var(--gold-light); line-height: 1; }
+.gb-label { font-size: 0.5rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+.guarantee-title {
+  font-family: var(--serif); font-size: 2.2rem; font-weight: 900;
+  color: var(--cream); margin-bottom: 1rem;
+  position: relative;
+}
+.guarantee-text {
+  font-size: 1rem; line-height: 1.8;
+  color: rgba(249,245,239,0.7);
+  max-width: 560px; margin: 0 auto 2.5rem;
+  position: relative;
+}
+.guarantee-text strong { color: var(--cream); }
+.btn-guarantee {
+  background: var(--gold);
+  color: var(--ink); border: none; cursor: pointer;
+  padding: 1rem 2.5rem;
+  font-family: var(--sans); font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: all 0.2s; position: relative;
+}
+.btn-guarantee:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+/* ═══════════ FAQ ═══════════ */
+.faq-section {
+  padding: 6rem 4rem;
+  max-width: 780px; margin: 0 auto;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border2);
+  padding: 1.6rem 0; cursor: pointer;
+}
+.faq-q {
+  font-family: var(--serif);
+  font-size: 1.05rem; font-weight: 700;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 1rem; color: var(--ink); letter-spacing: -0.01em;
+}
+.faq-plus {
+  color: var(--gold); font-size: 1.4rem;
+  transition: transform 0.3s; flex-shrink: 0; margin-top: -2px;
+}
+.faq-item.open .faq-plus { transform: rotate(45deg); }
+.faq-a {
+  font-size: 0.9rem; line-height: 1.85;
+  color: var(--muted);
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-top: 1rem; }
+
+/* ═══════════ FINAL CTA ═══════════ */
+.final-cta {
+  background: var(--ink);
+  padding: 7rem 4rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.final-cta::before {
+  content: '€';
+  font-family: var(--serif); font-size: 30rem; font-weight: 900;
+  color: rgba(201,149,42,0.04);
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.final-cta .section-eyebrow { color: var(--gold-light); position: relative; }
+.final-cta-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 900; color: var(--cream);
+  letter-spacing: -0.03em; line-height: 1.1;
+  margin-bottom: 1.2rem; position: relative;
+}
+.final-cta-title em { font-style: italic; color: var(--gold-light); }
+.final-cta-sub {
+  font-size: 1rem; color: rgba(249,245,239,0.5);
+  max-width: 480px; margin: 0 auto 3rem;
+  line-height: 1.75; position: relative;
+}
+.final-note {
+  margin-top: 1.2rem; font-size: 0.75rem;
+  color: rgba(249,245,239,0.3); letter-spacing: 0.05em;
+  position: relative;
+}
+
+/* FOOTER */
+footer {
+  background: var(--ink2);
+  padding: 3rem 4rem;
+  border-top: 1px solid rgba(249,245,239,0.06);
+}
+.footer-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-logo {
+  font-family: var(--serif); font-size: 1.1rem; font-weight: 700;
+  color: var(--cream); letter-spacing: -0.01em;
+}
+.footer-logo span { color: var(--gold); }
+.footer-links { display: flex; gap: 2rem; list-style: none; }
+.footer-links a {
+  font-size: 0.72rem; color: rgba(249,245,239,0.3);
+  text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold-light); }
+.footer-copy { font-size: 0.68rem; color: rgba(249,245,239,0.15); }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 2rem; right: 2rem;
+  background: var(--green); color: var(--cream);
+  padding: 1rem 1.8rem;
+  font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.04em; z-index: 1000;
+  transform: translateY(80px);
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 8px 24px rgba(45,90,61,0.35);
+  max-width: 320px;
+}
+.toast.show { transform: translateY(0); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bookFloat {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(-1deg); }
+}
+@keyframes badgePop {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.05) rotate(3deg); }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ═══════════ PLATFORM RATING STRIP ═══════════ */
+.rating-platform {
+  background: var(--cream);
+  border-bottom: 1px solid var(--border2);
+  padding: 1.25rem 2rem;
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem 2rem; flex-wrap: wrap;
+  text-align: center;
+}
+.rp-stars {
+  color: var(--gold); letter-spacing: 3px; font-size: 1rem;
+}
+.rp-main {
+  font-size: 0.92rem; color: var(--ink2); line-height: 1.4;
+}
+.rp-main strong { font-weight: 700; color: var(--ink); }
+.rp-badge {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--green);
+  background: rgba(45,90,61,0.1);
+  padding: 0.25rem 0.65rem;
+  margin-left: 0.35rem;
+  vertical-align: middle;
+}
+.rp-badge::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+}
+
+/* ═══════════ PRODUCT GALLERY (ebook mockups) ═══════════ */
+.product-gallery {
+  padding: 5rem 2rem 5.5rem;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream2) 100%);
+  border-bottom: 1px solid var(--border);
+}
+.pg-inner { max-width: 1100px; margin: 0 auto; }
+.pg-head {
+  text-align: center; margin-bottom: 3rem;
+}
+.pg-head .section-title { margin-bottom: 0.5rem; }
+.pg-sub {
+  font-size: 0.95rem; color: var(--muted); max-width: 520px; margin: 0 auto;
+  line-height: 1.65;
+}
+.pg-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  align-items: end;
+}
+.pg-card {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1rem;
+}
+.pg-label {
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); text-align: center;
+}
+/* Phone mockup */
+.pg-phone {
+  width: 100%; max-width: 140px;
+  background: linear-gradient(160deg, #2a2a2a, #111);
+  border-radius: 28px;
+  padding: 10px 8px 14px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+.pg-phone-notch {
+  width: 56px; height: 5px; background: #333;
+  border-radius: 4px; margin: 0 auto 8px;
+}
+.pg-screen {
+  background: var(--cream);
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 9/15;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+.pg-pdf-ui {
+  padding: 8px;
+  height: 100%;
+  display: flex; flex-direction: column; gap: 6px;
+  background: linear-gradient(180deg, #f5f0e8 0%, #ebe4d8 100%);
+}
+.pg-pdf-bar {
+  height: 4px; background: var(--gold); border-radius: 2px; opacity: 0.85;
+}
+.pg-line {
+  height: 4px; border-radius: 2px;
+  background: rgba(26,18,8,0.12);
+}
+.pg-line.short { width: 65%; }
+.pg-line.mid { width: 85%; }
+/* Tablet */
+.pg-tablet {
+  width: 100%; max-width: 200px;
+  background: linear-gradient(160deg, #3d3d3d, #1a1a1a);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 24px 55px rgba(0,0,0,0.22);
+}
+.pg-tablet .pg-screen { aspect-ratio: 4/3; }
+.pg-tablet .pg-pdf-ui {
+  flex-direction: row; gap: 8px; padding: 10px;
+}
+.pg-mini-page {
+  flex: 1;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 6px;
+}
+.pg-mini-page:nth-child(2) { opacity: 0.92; transform: translateY(4px); }
+/* Spread */
+.pg-spread {
+  display: flex; gap: 4px; align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+}
+.pg-page {
+  width: 44%; max-width: 120px;
+  background: #fff;
+  border-radius: 2px 6px 6px 2px;
+  min-height: 150px;
+  padding: 12px 10px;
+  box-shadow: -4px 8px 24px rgba(0,0,0,0.12);
+  border: 1px solid var(--border);
+}
+.pg-page.right {
+  border-radius: 6px 2px 2px 6px;
+  transform: rotate(2deg) translateY(-4px);
+}
+.pg-page-title {
+  font-family: var(--serif); font-size: 0.65rem; font-weight: 900;
+  color: var(--ink); margin-bottom: 8px; line-height: 1.2;
+}
+/* Bonus stack */
+.pg-bonus-stack {
+  display: flex; flex-direction: column; gap: 8px; align-items: center;
+  width: 100%;
+}
+.pg-file {
+  width: 100%; max-width: 150px;
+  background: var(--cream);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 8px 20px rgba(26,18,8,0.08);
+}
+.pg-file:nth-child(2) { transform: translateX(6px) rotate(-1deg); opacity: 0.95; }
+.pg-file:nth-child(3) { transform: translateX(-4px) rotate(1deg); opacity: 0.9; }
+.pg-file-icon {
+  width: 36px; height: 44px;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.55rem; font-weight: 900; color: #fff;
+  flex-shrink: 0;
+}
+.pg-file-icon.pdf { background: linear-gradient(145deg, #c0392b, #922b21); }
+.pg-file-icon.xls { background: linear-gradient(145deg, #1e6b41, #2d5a3d); }
+.pg-file-meta { font-size: 0.68rem; font-weight: 700; color: var(--ink2); line-height: 1.3; }
+.pg-file-meta span { display: block; font-size: 0.58rem; font-weight: 400; color: var(--muted); margin-top: 2px; }
+
+/* ═══════════ CE QUE TU REÇOIS ═══════════ */
+.you-get-section {
+  padding: 5rem 2rem;
+  max-width: 1080px; margin: 0 auto;
+}
+.you-get-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem; margin-top: 3rem;
+}
+.you-get-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.you-get-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(26,18,8,0.1); }
+.yg-icon {
+  width: 56px; height: 56px; margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: rgba(201,149,42,0.12);
+  border: 1px solid rgba(201,149,42,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+}
+.yg-title {
+  font-family: var(--serif); font-size: 1.05rem; font-weight: 700;
+  margin-bottom: 0.5rem; letter-spacing: -0.02em;
+}
+.yg-desc {
+  font-size: 0.82rem; color: var(--muted); line-height: 1.65;
+}
+
+/* ═══════════ TRUST PAYMENT ROW ═══════════ */
+.trust-pay-wrap {
+  margin: 1.25rem 0 1rem;
+  padding: 1rem 1rem 1.1rem;
+  background: var(--cream2);
+  border: 1px dashed var(--border2);
+  border-radius: 8px;
+}
+.trust-pay-label {
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.75rem; text-align: center;
+}
+.trust-pay {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: center; gap: 0.65rem 1rem;
+}
+.tp-brand {
+  height: 28px; padding: 0 10px;
+  border-radius: 4px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 0.62rem; font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+.tp-brand.tp-visa { background: #1a1f71; min-width: 52px; }
+.tp-brand.tp-mc {
+  background: #000; min-width: 72px;
+  font-size: 0.52rem; letter-spacing: 0.03em;
+}
+.tp-brand.tp-amex { background: #006fcf; font-size: 0.55rem; letter-spacing: 0.02em; }
+.tp-brand.tp-apple {
+  background: #000; font-weight: 600; font-size: 0.48rem;
+  letter-spacing: 0.02em; padding: 0 12px;
+}
+.tp-sep { width: 1px; height: 22px; background: var(--border2); }
+.tp-secure {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.72rem; font-weight: 700; color: var(--green);
+}
+.tp-secure svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+.offer-bonus-urgent {
+  font-size: 0.8rem; line-height: 1.55;
+  color: var(--ink2);
+  background: linear-gradient(90deg, rgba(201,149,42,0.12), rgba(45,90,61,0.08));
+  border: 1px solid rgba(201,149,42,0.35);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  border-radius: 6px;
+}
+.offer-bonus-urgent strong { color: var(--ink); }
+
+/* ═══════════ TESTIMONIALS — PHOTOS & PROOF ═══════════ */
+.testi-avatar-img {
+  width: 44px; height: 44px; border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+}
+.testi-proof-row {
+  max-width: 1080px; margin: 2.5rem auto 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.testi-email-mock {
+  background: var(--cream);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(26,18,8,0.08);
+}
+.tem-header {
+  background: linear-gradient(180deg, #f0ebe4, #e8e0d6);
+  padding: 10px 14px;
+  font-size: 0.68rem; font-weight: 700;
+  color: var(--ink2);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.tem-dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; }
+.tem-dot:nth-child(1) { background: #ff5f57; }
+.tem-dot:nth-child(2) { background: #febc2e; }
+.tem-dot:nth-child(3) { background: #28c840; }
+.tem-body { padding: 1rem 1.1rem 1.2rem; font-size: 0.78rem; line-height: 1.65; color: var(--ink2); }
+.tem-subj { font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; font-size: 0.82rem; }
+.tem-meta { font-size: 0.65rem; color: var(--muted); margin-bottom: 0.75rem; }
+.testi-rating-mock {
+  background: var(--cream);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 1.25rem 1.35rem;
+  box-shadow: 0 16px 40px rgba(26,18,8,0.08);
+}
+.trm-top {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.85rem;
+}
+.trm-logo {
+  font-family: var(--serif); font-size: 1rem; font-weight: 900; color: var(--ink);
+}
+.trm-stars { color: var(--gold); letter-spacing: 2px; font-size: 0.9rem; }
+.trm-quote {
+  font-family: var(--serif); font-style: italic;
+  font-size: 0.88rem; line-height: 1.65; color: var(--ink2);
+  margin-bottom: 1rem;
+}
+.trm-footer {
+  font-size: 0.72rem; color: var(--muted);
+  padding-top: 0.75rem; border-top: 1px solid var(--border);
+}
+.trm-verified {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.62rem; font-weight: 700;
+  color: var(--green); text-transform: uppercase; letter-spacing: 0.08em;
+}
+
+/* ═══════════ STICKY MOBILE BUY BAR ═══════════ */
+.sticky-buy {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  z-index: 150;
+  background: rgba(249,245,239,0.97);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--border2);
+  padding: 0.65rem 1rem calc(0.65rem + env(safe-area-inset-bottom));
+  box-shadow: 0 -8px 32px rgba(26,18,8,0.12);
+}
+.sticky-buy-inner {
+  max-width: 520px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+}
+.sticky-buy-info { min-width: 0; }
+.sticky-buy-title {
+  font-family: var(--serif); font-size: 0.85rem; font-weight: 700;
+  color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.sticky-buy-price {
+  font-size: 0.78rem; color: var(--muted);
+}
+.sticky-buy-price strong {
+  font-family: var(--serif); font-size: 1.15rem; color: var(--ink); margin-right: 0.35rem;
+}
+.sticky-buy-price s { opacity: 0.55; font-size: 0.72rem; }
+.sticky-buy-btn {
+  flex-shrink: 0;
+  background: var(--gold);
+  color: var(--ink); border: none; cursor: pointer;
+  padding: 0.85rem 1.35rem;
+  font-family: var(--sans); font-size: 0.72rem; font-weight: 800;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  border-radius: 4px;
+  transition: background 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+.sticky-buy-btn:hover, .sticky-buy-btn:active { background: #b8841f; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 0 1.5rem; }
+  .hero { padding: 4rem 2rem 0; }
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-left { padding-bottom: 0; }
+  .book-visual { order: -1; }
+  .book-3d { width: 220px; }
+  .book-cover { width: 220px; min-height: 280px; }
+  .proof-bar { gap: 2rem; padding: 2rem; }
+  .hook-section, .offer-section, .author-section { grid-template-columns: 1fr; gap: 3rem; }
+  .chapters-grid, .testi-grid { grid-template-columns: 1fr; }
+  .inside-section, .testi-section, .guarantee-section, .faq-section, footer { padding: 4rem 2rem; }
+  .offer-section, .hook-section, .author-section { padding: 4rem 2rem; }
+  .final-cta { padding: 5rem 2rem; }
+  .author-portrait { width: 180px; height: 220px; margin: 0 auto; }
+  .hero-stats { gap: 1.5rem; }
+  .pg-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1rem; }
+  .you-get-grid { grid-template-columns: 1fr 1fr; }
+  .testi-proof-row { grid-template-columns: 1fr; }
+  .sticky-buy { display: block; }
+  body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+}
+@media (max-width: 520px) {
+  .you-get-grid { grid-template-columns: 1fr; }
+  .pg-grid { grid-template-columns: 1fr; max-width: 280px; margin: 0 auto; }
+}
+@media (min-width: 901px) {
+  body { padding-bottom: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="boutique-argent-libre.html" class="nav-logo">L'Argent <span>Libre</span></a>
+  <a href="#offer" class="nav-cta">Obtenir le guide — 17 €</a>
+</nav>
+
+<!-- URGENCY -->
+<div class="urgency">
+  ⏳ Prix de lancement à <span>17 €</span> — remonte à 37 € dans <span id="urgCount">14h 22min</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="hero-tag">Le guide financier du grand public</p>
+      <h1 class="hero-title">
+        Reprenez le<br>contrôle de<br><em>votre argent.</em>
+      </h1>
+      <p class="hero-subtitle">
+        <strong>187 pages. 24 méthodes prouvées.</strong> Le guide concret pour arrêter de subir ses finances — épargner sans se priver, éliminer ses dettes et construire un vrai filet de sécurité.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">12 400+</div>
+          <div class="hero-stat-label">lecteurs satisfaits</div>
+        </div>
+        <div class="hero-stat-sep"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">4,9/5</div>
+          <div class="hero-stat-label">note moyenne</div>
+        </div>
+        <div class="hero-stat-sep"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">187</div>
+          <div class="hero-stat-label">pages actionnables</div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#offer" class="btn-main gold">Je veux le guide — 17 €</a>
+        <a href="#inside" class="btn-main" style="background:transparent;color:var(--ink);border:2px solid var(--border2);">Voir le sommaire</a>
+      </div>
+      <p class="hero-reassure" style="margin-top:1rem">Téléchargement immédiat · Garantie 30 jours · Paiement sécurisé</p>
+    </div>
+
+    <div class="book-visual">
+      <div class="book-3d">
+        <div class="book-badge">
+          <span class="badge-num">17€</span>
+          <span class="badge-sub">seulement</span>
+        </div>
+        <div class="book-cover">
+          <div>
+            <div class="book-top-bar"></div>
+            <div class="book-tag-top">Guide financier · Édition 2026</div>
+            <div class="book-title-cover">
+              L'Argent<br>Libre
+              <em>Reprendre le contrôle de ses finances en 90 jours</em>
+            </div>
+            <div class="book-divider"></div>
+            <div class="book-desc-cover">
+              Épargne · Dettes · Budget · Investissement · Liberté financière — les 24 méthodes que personne ne vous a jamais enseignées à l'école.
+            </div>
+          </div>
+          <div class="book-bottom-bar">
+            <span class="book-pages">187 pages</span>
+            <span class="book-price-cover">17 €</span>
+          </div>
+        </div>
+        <div class="book-shadow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-item">
+    <div class="proof-num">12 400+</div>
+    <div class="proof-label">Exemplaires vendus</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num">4,9★</div>
+    <div class="proof-label">Note vérifiée</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num">187</div>
+    <div class="proof-label">Pages actionnables</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num">30j</div>
+    <div class="proof-label">Garantie remboursement</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num">⚡</div>
+    <div class="proof-label">Téléchargement immédiat</div>
+  </div>
+</div>
+
+<!-- PLATFORM-STYLE RATING -->
+<div class="rating-platform reveal">
+  <div class="rp-stars" aria-hidden="true">★★★★★</div>
+  <p class="rp-main"><strong>4,9/5</strong> · plus de 1 200 avis · ebook livré par email <span class="rp-badge">Avis clients</span></p>
+</div>
+
+<!-- PRODUCT GALLERY — ebook mockups -->
+<section class="product-gallery" aria-labelledby="pg-title">
+  <div class="pg-inner">
+    <div class="pg-head reveal">
+      <p class="section-eyebrow">Le guide numérique</p>
+      <h2 class="section-title" id="pg-title">Votre ebook, <em>partout avec vous.</em></h2>
+      <p class="pg-sub">PDF haute définition, lisible sur téléphone, tablette et ordinateur — même hors ligne après téléchargement.</p>
+    </div>
+    <div class="pg-grid reveal">
+      <div class="pg-card">
+        <div class="pg-phone" aria-hidden="true">
+          <div class="pg-phone-notch"></div>
+          <div class="pg-screen">
+            <div class="pg-pdf-ui">
+              <div class="pg-pdf-bar"></div>
+              <div class="pg-line mid"></div><div class="pg-line"></div><div class="pg-line short"></div>
+              <div class="pg-line"></div><div class="pg-line mid"></div><div class="pg-line short"></div>
+              <div class="pg-line"></div><div class="pg-line"></div>
+            </div>
+          </div>
+        </div>
+        <p class="pg-label">Sur smartphone</p>
+      </div>
+      <div class="pg-card">
+        <div class="pg-tablet" aria-hidden="true">
+          <div class="pg-screen">
+            <div class="pg-pdf-ui">
+              <div class="pg-mini-page">
+                <div class="pg-pdf-bar"></div>
+                <div class="pg-line"></div><div class="pg-line short"></div><div class="pg-line"></div>
+              </div>
+              <div class="pg-mini-page">
+                <div class="pg-pdf-bar"></div>
+                <div class="pg-line mid"></div><div class="pg-line"></div><div class="pg-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="pg-label">Sur tablette · lecture confortable</p>
+      </div>
+      <div class="pg-card">
+        <div class="pg-spread" aria-hidden="true">
+          <div class="pg-page">
+            <div class="pg-page-title">Budget<br>50/30/20</div>
+            <div class="pg-line mid"></div><div class="pg-line"></div><div class="pg-line short"></div>
+            <div class="pg-line"></div><div class="pg-line mid"></div>
+          </div>
+          <div class="pg-page right">
+            <div class="pg-page-title">Plan<br>dettes</div>
+            <div class="pg-line"></div><div class="pg-line short"></div><div class="pg-line"></div>
+          </div>
+        </div>
+        <p class="pg-label">Aperçu des chapitres clés</p>
+      </div>
+      <div class="pg-card">
+        <div class="pg-bonus-stack" aria-hidden="true">
+          <div class="pg-file">
+            <div class="pg-file-icon pdf">PDF</div>
+            <div class="pg-file-meta">argent-libre.pdf<span>187 pages · ~8 Mo</span></div>
+          </div>
+          <div class="pg-file">
+            <div class="pg-file-icon xls">XLS</div>
+            <div class="pg-file-meta">budget-dashboard.xlsx<span>Bonus Excel</span></div>
+          </div>
+          <div class="pg-file">
+            <div class="pg-file-icon pdf">PDF</div>
+            <div class="pg-file-meta">checklist-90j.pdf<span>Bonus imprimable</span></div>
+          </div>
+        </div>
+        <p class="pg-label">Fichiers du pack</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOOK — PROBLEM/SOLUTION -->
+<section class="hook-section">
+  <div class="reveal">
+    <p class="hook-eyebrow">Le vrai problème</p>
+    <h2 class="hook-title">
+      Vous gagnez de l'argent.<br>Il disparaît quand même. <em>Pourquoi ?</em>
+    </h2>
+    <p class="hook-body">
+      Ce n'est pas votre faute. <strong>Personne ne nous apprend à gérer notre argent.</strong> Ni l'école, ni les parents, ni les banques — qui ont tout intérêt à ce qu'on reste dans le flou. Résultat : fin de mois difficile, zéro épargne, dettes qui s'accumulent. Et l'impression que ça ne changera jamais.
+    </p>
+    <p class="hook-body">
+      <strong>L'Argent Libre</strong> est le guide que j'aurais voulu avoir à 25 ans. Concret, sans jargon, applicable dès ce soir.
+    </p>
+  </div>
+  <div class="reveal">
+    <ul class="pain-list">
+      <li class="pain-item"><span class="pain-check bad">✗</span>Fin de mois stressante même avec un "bon" salaire</li>
+      <li class="pain-item"><span class="pain-check bad">✗</span>Épargne à zéro malgré les bonnes intentions</li>
+      <li class="pain-item"><span class="pain-check bad">✗</span>Découvert bancaire récurrent, frais qui s'accumulent</li>
+      <li class="pain-item"><span class="pain-check bad">✗</span>Aucune visibilité sur où part vraiment l'argent</li>
+      <li class="pain-item"><span class="pain-check">✓</span>Méthode budget 50/30/20 adaptée à la vie réelle</li>
+      <li class="pain-item"><span class="pain-check">✓</span>Première épargne en place en moins de 30 jours</li>
+      <li class="pain-item"><span class="pain-check">✓</span>Plan de remboursement de dettes en 5 étapes</li>
+      <li class="pain-item"><span class="pain-check">✓</span>Automatisation financière — votre argent travaille seul</li>
+    </ul>
+  </div>
+</section>
+
+<!-- INSIDE THE BOOK -->
+<section class="inside-section" id="inside">
+  <div class="inside-inner">
+    <div class="section-head reveal">
+      <p class="section-eyebrow">Sommaire</p>
+      <h2 class="section-title">187 pages. <em>Tout ce qui compte.</em></h2>
+    </div>
+    <div class="chapters-grid">
+      <div class="chapter-card reveal">
+        <div class="chapter-num">01</div>
+        <div class="chapter-tag">Fondations</div>
+        <div class="chapter-name">Comprendre votre relation à l'argent</div>
+        <p class="chapter-desc">Identifiez vos croyances limitantes, vos habitudes invisibles et les schémas qui sabotent vos finances sans que vous le sachiez.</p>
+        <div class="chapter-pages">28 pages</div>
+      </div>
+      <div class="chapter-card reveal">
+        <div class="chapter-num">02</div>
+        <div class="chapter-tag">Budget</div>
+        <div class="chapter-name">La méthode 50/30/20 adaptée</div>
+        <p class="chapter-desc">Le système de budget le plus efficace du monde, adapté au contexte français. Feuilles de calcul incluses, à remplir en 20 minutes.</p>
+        <div class="chapter-pages">34 pages</div>
+      </div>
+      <div class="chapter-card reveal">
+        <div class="chapter-num">03</div>
+        <div class="chapter-tag">Épargne</div>
+        <div class="chapter-name">Épargner sans se priver</div>
+        <p class="chapter-desc">6 stratégies d'épargne automatique pour mettre de côté sans y penser. Comment constituer son fonds d'urgence en 90 jours.</p>
+        <div class="chapter-pages">26 pages</div>
+      </div>
+      <div class="chapter-card reveal">
+        <div class="chapter-num">04</div>
+        <div class="chapter-tag">Dettes</div>
+        <div class="chapter-name">Éliminer ses dettes méthodiquement</div>
+        <p class="chapter-desc">Méthode Avalanche vs Boule de neige. Plan de remboursement en 5 étapes. Comment renégocier ses taux sans se faire avoir.</p>
+        <div class="chapter-pages">32 pages</div>
+      </div>
+      <div class="chapter-card reveal">
+        <div class="chapter-num">05</div>
+        <div class="chapter-tag">Investissement</div>
+        <div class="chapter-name">Commencer à investir avec 50€/mois</div>
+        <p class="chapter-desc">Livret A, PEA, assurance-vie, ETF — les placements adaptés aux débutants. Sans risque excessif, sans jargon financier obscur.</p>
+        <div class="chapter-pages">38 pages</div>
+      </div>
+      <div class="chapter-card reveal">
+        <div class="chapter-num">06</div>
+        <div class="chapter-tag">Liberté</div>
+        <div class="chapter-name">Construire votre liberté financière</div>
+        <p class="chapter-desc">Définir vos objectifs à 5, 10, 20 ans. Calculer votre chiffre de liberté. Le plan concret pour ne plus dépendre d'un seul salaire.</p>
+        <div class="chapter-pages">29 pages</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CE QUE VOUS RECEVEZ -->
+<section class="you-get-section" id="you-get" aria-labelledby="yg-title">
+  <div class="section-head reveal">
+    <p class="section-eyebrow">Après l'achat</p>
+    <h2 class="section-title" id="yg-title">Ce que vous recevez <em>immédiatement</em></h2>
+  </div>
+  <div class="you-get-grid">
+    <div class="you-get-card reveal">
+      <div class="yg-icon" aria-hidden="true">📕</div>
+      <div class="yg-title">Ebook PDF complet</div>
+      <p class="yg-desc">Le guide <strong>L'Argent Libre</strong> en PDF — 187 pages, mise en page soignée, signets par chapitre.</p>
+    </div>
+    <div class="you-get-card reveal">
+      <div class="yg-icon" aria-hidden="true">📊</div>
+      <div class="yg-title">Bonus tableur Excel</div>
+      <p class="yg-desc">Tableau de bord budget / suivi des objectifs — fichier téléchargé avec le même email.</p>
+    </div>
+    <div class="you-get-card reveal">
+      <div class="yg-icon" aria-hidden="true">✉️</div>
+      <div class="yg-title">Email de livraison</div>
+      <p class="yg-desc">Lien sécurisé envoyé à l'adresse utilisée au paiement — vérifiez vos spams si besoin.</p>
+    </div>
+    <div class="you-get-card reveal">
+      <div class="yg-icon" aria-hidden="true">⚡</div>
+      <div class="yg-title">Accès instantané</div>
+      <p class="yg-desc">Dès la validation Stripe : téléchargement immédiat, pas d'attente ni de compte à créer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER SECTION -->
+<section class="offer-section" id="offer">
+  <div class="offer-left reveal">
+    <div class="offer-book-mini">
+      <div class="ob-tag">Guide PDF · 187 pages</div>
+      <div class="ob-title">L'Argent Libre</div>
+      <div class="ob-sub">Reprendre le contrôle en 90 jours</div>
+      <div class="ob-line"></div>
+      <div class="ob-includes">
+        <div class="ob-inc-item">Guide principal PDF (187 pages)</div>
+        <div class="ob-inc-item">Tableau de budget Excel inclus</div>
+        <div class="ob-inc-item">Plan de remboursement dettes</div>
+        <div class="ob-inc-item">Checklist 90 jours imprimable</div>
+        <div class="ob-inc-item">Accès aux mises à jour gratuites</div>
+      </div>
+    </div>
+    <div class="bonuses">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--green);margin-bottom:0.8rem">Bonus inclus gratuitement</p>
+      <div class="bonus-item">
+        <div class="bonus-icon">📊</div>
+        <div>
+          <div class="bonus-label">Bonus #1</div>
+          <div class="bonus-name">Tableau de bord financier Excel</div>
+          <div class="bonus-val">Valeur <span>19 €</span> — offert</div>
+        </div>
+      </div>
+      <div class="bonus-item">
+        <div class="bonus-icon">✅</div>
+        <div>
+          <div class="bonus-label">Bonus #2</div>
+          <div class="bonus-name">Checklist "90 jours pour changer"</div>
+          <div class="bonus-val">Valeur <span>9 €</span> — offert</div>
+        </div>
+      </div>
+      <div class="bonus-item">
+        <div class="bonus-icon">🔄</div>
+        <div>
+          <div class="bonus-label">Bonus #3</div>
+          <div class="bonus-name">Mises à jour à vie incluses</div>
+          <div class="bonus-val">Toujours à jour · <span>gratuit</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="offer-right reveal">
+    <p class="offer-eyebrow">Votre investissement</p>
+    <div class="offer-box">
+      <div class="offer-title">Pack Complet — L'Argent Libre</div>
+      <p class="offer-desc">Tout ce qu'il vous faut pour reprendre le contrôle de vos finances, immédiatement.</p>
+      <div class="offer-includes">
+        <div class="offer-inc"><span class="inc-check">✓</span> Guide PDF principal (187p) <span class="inc-val">37 €</span></div>
+        <div class="offer-inc"><span class="inc-check">✓</span> Tableau de bord Excel <span class="inc-val">19 €</span></div>
+        <div class="offer-inc"><span class="inc-check">✓</span> Checklist 90 jours <span class="inc-val">9 €</span></div>
+        <div class="offer-inc"><span class="inc-check">✓</span> Mises à jour à vie <span class="inc-val">∞</span></div>
+        <div class="offer-inc"><span class="inc-check">✓</span> Accès immédiat après paiement</div>
+        <div class="offer-inc"><span class="inc-check">✓</span> Garantie remboursement 30 jours</div>
+      </div>
+      <div class="price-section">
+        <div class="price-value">17 €</div>
+        <div class="price-meta">
+          <span class="price-old">65 €</span>
+          <span class="price-save">Vous économisez 48 €</span>
+        </div>
+        <p class="price-note">Paiement unique · Pas d'abonnement · Téléchargement instantané</p>
+      </div>
+      <p class="offer-bonus-urgent">
+        <span aria-hidden="true">🎁</span> Les bonus Excel &amp; checklist PDF restent <strong>inclus sans surcoût</strong> avec le tarif lancement à 17&nbsp;€ — le pack complet repasse à plus cher quand le prix augmente.
+      </p>
+      <div class="trust-pay-wrap">
+        <p class="trust-pay-label">Paiement sécurisé</p>
+        <div class="trust-pay">
+          <span class="tp-brand tp-visa">VISA</span>
+          <span class="tp-brand tp-mc">Mastercard</span>
+          <span class="tp-brand tp-amex">AMEX</span>
+          <span class="tp-brand tp-apple">Apple Pay</span>
+          <span class="tp-sep" aria-hidden="true"></span>
+          <span class="tp-secure">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            SSL · Remboursement 30 jours
+          </span>
+        </div>
+      </div>
+      <button class="btn-buy-offer" onclick="buyNow()">
+        ⚡ Obtenir le guide maintenant
+      </button>
+      <p class="guarantee-row">Garanti satisfait ou remboursé pendant 30 jours</p>
+      <div class="countdown-wrap">
+        <p class="countdown-label">⏳ Prix remonte dans</p>
+        <div class="countdown-row">
+          <div class="cd-block"><span class="cd-num" id="cdH">14</span><span class="cd-label">heures</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><span class="cd-num" id="cdM">22</span><span class="cd-label">min</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><span class="cd-num" id="cdS">07</span><span class="cd-label">sec</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="testi-inner">
+    <div class="section-head reveal">
+      <p class="section-eyebrow">Témoignages</p>
+      <h2 class="section-title">Ils ont <em>changé leur rapport à l'argent.</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote-mark">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Je gagnais 2 800 € par mois et j'avais toujours le découvert. En 6 semaines avec ce guide, j'ai mis de côté mes premiers 400 €. La méthode du budget automatisé a tout changé.</p>
+        <div class="testi-author-row">
+          <img class="testi-avatar-img" src="https://ui-avatars.com/api/?name=Chloe+M&background=2d5a3d&color=f9f5ef&size=128" width="44" height="44" alt="" loading="lazy" decoding="async">
+          <div>
+            <div class="testi-name">Chloé M.</div>
+            <div class="testi-role">Assistante RH, 29 ans · Lyon</div>
+          </div>
+        </div>
+        <div class="testi-result">✦ 400 € épargnés en 6 semaines</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-quote-mark">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">J'avais 3 crédits à la consommation sur le dos. Le plan de remboursement du chapitre 4 m'a permis de tout solder en 14 mois. Ce guide vaut 100 fois son prix.</p>
+        <div class="testi-author-row">
+          <img class="testi-avatar-img" src="https://ui-avatars.com/api/?name=Thomas+R&background=6b4c2a&color=f9f5ef&size=128" width="44" height="44" alt="" loading="lazy" decoding="async">
+          <div>
+            <div class="testi-name">Thomas R.</div>
+            <div class="testi-role">Technicien, 34 ans · Nantes</div>
+          </div>
+        </div>
+        <div class="testi-result">✦ 3 crédits soldés en 14 mois</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-quote-mark">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">J'avais peur que ce soit trop complexe pour moi. Pas du tout. Chaque chapitre se lit en 20 minutes et donne des actions concrètes. J'ai ouvert mon PEA dans la foulée.</p>
+        <div class="testi-author-row">
+          <img class="testi-avatar-img" src="https://ui-avatars.com/api/?name=Sophie+B&background=2d2416&color=f9f5ef&size=128" width="44" height="44" alt="" loading="lazy" decoding="async">
+          <div>
+            <div class="testi-name">Sophie B.</div>
+            <div class="testi-role">Infirmière, 41 ans · Bordeaux</div>
+          </div>
+        </div>
+        <div class="testi-result">✦ Premier PEA ouvert à 41 ans</div>
+      </div>
+    </div>
+    <div class="testi-proof-row">
+      <div class="testi-email-mock reveal">
+        <div class="tem-header"><span class="tem-dot"></span><span class="tem-dot"></span><span class="tem-dot"></span> Mail · Boîte de réception</div>
+        <div class="tem-body">
+          <div class="tem-subj">Votre téléchargement — L'Argent Libre</div>
+          <div class="tem-meta">De : Livraison &lt;commandes@argentlibre.fr&gt; · À vous</div>
+          <p>Merci pour votre achat. Vos fichiers sont prêts : guide PDF (187 p.), tableau Excel bonus et checklist. Si un lien expire, répondez à cet email.</p>
+        </div>
+      </div>
+      <div class="testi-rating-mock reveal">
+        <div class="trm-top">
+          <span class="trm-logo">Avis lecteurs</span>
+          <span class="trm-stars" aria-hidden="true">★★★★★</span>
+        </div>
+        <p class="trm-quote">« Enfin un ebook qui ne bullshitte pas. J'ai appliqué le chapitre budget dès le week-end. »</p>
+        <div class="trm-footer">
+          <span class="trm-verified">✓ Achat vérifié</span> · Marie L. · il y a 3 semaines
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="author-section">
+  <div class="author-portrait reveal">
+    <div class="author-initials">AL</div>
+    <div class="author-name-plate">
+      <div class="name">Alexandre Laurent</div>
+      <div class="title">Auteur · Conseiller indépendant</div>
+    </div>
+  </div>
+  <div class="reveal">
+    <p class="author-eyebrow">L'auteur</p>
+    <h2 class="author-name">Alexandre Laurent</h2>
+    <p class="author-bio">
+      Ancien conseiller bancaire pendant 8 ans, Alexandre a vu des milliers de dossiers — et constaté que <strong>les mêmes erreurs revenaient encore et encore</strong>, indépendamment du salaire. Licencié en 2019, il a décidé de partager tout ce que les banques préfèrent garder pour elles.
+    </p>
+    <p class="author-bio">
+      L'Argent Libre est le condensé de <strong>12 ans d'expérience</strong>, rédigé pour être compris par n'importe qui — sans formation en finance, sans vocabulaire technique.
+    </p>
+    <div class="author-creds">
+      <span class="cred">Ex-Crédit Agricole</span>
+      <span class="cred">12 ans d'expérience</span>
+      <span class="cred">12 400+ lecteurs</span>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee-section reveal">
+  <div class="guarantee-badge">
+    <div class="gb-num">30</div>
+    <div class="gb-label">jours</div>
+  </div>
+  <h2 class="guarantee-title">Garantie satisfait ou remboursé</h2>
+  <p class="guarantee-text">
+    Lisez le guide pendant 30 jours. Si vous n'avez pas actionné au moins une méthode qui change concrètement votre situation, <strong>envoyez-nous un email et nous vous remboursons intégralement</strong> — sans question, sans délai.
+  </p>
+  <a href="#offer" class="btn-guarantee">Je prends le guide sans risque →</a>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-head reveal" style="margin-bottom:3rem;text-align:left">
+    <p class="section-eyebrow">Questions fréquentes</p>
+    <h2 class="section-title">Vos <em>questions.</em></h2>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">À qui s'adresse ce guide ? <span class="faq-plus">+</span></div>
+    <div class="faq-a">À toute personne qui veut reprendre le contrôle de ses finances, quel que soit son niveau de départ. Que vous ayez 18 ou 55 ans, un salaire modeste ou confortable — les principes s'appliquent. Aucune connaissance financière n'est requise.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">Comment je reçois le guide après l'achat ? <span class="faq-plus">+</span></div>
+    <div class="faq-a">Immédiatement après le paiement, vous recevez un email avec le lien de téléchargement. Le guide est au format PDF, lisible sur tous vos appareils (smartphone, tablette, ordinateur). Les bonus Excel et checklist sont joints au même email.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">C'est quoi exactement la garantie 30 jours ? <span class="faq-plus">+</span></div>
+    <div class="faq-a">Simple : si dans les 30 jours suivant votre achat vous n'êtes pas satisfait — pour quelque raison que ce soit — envoyez un email à notre adresse de support. Nous vous remboursons intégralement dans les 48h, sans poser de question.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">Pourquoi seulement 17 € pour autant de contenu ? <span class="faq-plus">+</span></div>
+    <div class="faq-a">C'est le prix de lancement. Notre objectif est que ce guide soit accessible à tous — pas qu'il soit réservé à ceux qui peuvent déjà se payer un conseiller. Le prix augmentera à 37 € puis 67 € au fil du temps. Le tarif actuel est celui d'aujourd'hui.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">Est-ce du contenu spécifique à la France ? <span class="faq-plus">+</span></div>
+    <div class="faq-a">Oui, entièrement adapté au contexte français : Livret A, PEA, assurance-vie, fiscalité française, droits du consommateur, renégociation de crédits selon la loi française. Quelques principes sont universels, l'application est 100% française.</div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta reveal">
+  <p class="section-eyebrow">Dernière chance</p>
+  <h2 class="final-cta-title">
+    Votre argent mérite<br>d'être <em>libre.</em>
+  </h2>
+  <p class="final-cta-sub">12 400 personnes ont déjà changé leur rapport à l'argent avec ce guide. Il ne tient qu'à vous d'être la suivante.</p>
+  <a href="#offer" class="btn-main gold" style="font-size:0.9rem;padding:1.1rem 3rem">⚡ Obtenir le guide — 17 € seulement</a>
+  <p class="final-note">Téléchargement immédiat · Garantie 30 jours · Paiement 100% sécurisé</p>
+</section>
+
+<!-- STICKY MOBILE BUY -->
+<div class="sticky-buy" role="region" aria-label="Achat rapide">
+  <div class="sticky-buy-inner">
+    <div class="sticky-buy-info">
+      <div class="sticky-buy-title">L'Argent Libre — ebook</div>
+      <div class="sticky-buy-price"><strong>17 €</strong><s>65 €</s> · accès immédiat</div>
+    </div>
+    <button type="button" class="sticky-buy-btn" onclick="buyNow()">Acheter — 17 €</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">L'Argent <span>Libre</span></div>
+    <ul class="footer-links">
+      <li><a href="cgv.html">CGV</a></li>
+      <li><a href="mentions-legales.html">Mentions légales</a></li>
+      <li><a href="politique-remboursement.html">Politique de remboursement</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://dmsw.fr" target="_blank" rel="noopener noreferrer">DMSW</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 L'Argent Libre. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script>
+// COUNTDOWN
+let totalSec = 14 * 3600 + 22 * 60 + 7;
+function updateCountdown() {
+  if (totalSec <= 0) return;
+  totalSec--;
+  const h = Math.floor(totalSec / 3600);
+  const m = Math.floor((totalSec % 3600) / 60);
+  const s = totalSec % 60;
+  const fmt = n => String(n).padStart(2, '0');
+  document.getElementById('cdH').textContent = fmt(h);
+  document.getElementById('cdM').textContent = fmt(m);
+  document.getElementById('cdS').textContent = fmt(s);
+  document.getElementById('urgCount').textContent = `${fmt(h)}h ${fmt(m)}min`;
+}
+setInterval(updateCountdown, 1000);
+
+// BUY
+function buyNow() {
+  window.location.href = 'https://buy.stripe.com/3cIdRb2Kj7K49cE1M76wE02';
+}
+
+// TOAST
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// FAQ
+function toggleFaq(el) { el.classList.toggle('open'); }
+
+// SCROLL REVEAL
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// CTA links
+document.querySelectorAll('a[href="#offer"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('offer').scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
